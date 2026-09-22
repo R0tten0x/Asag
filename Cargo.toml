@@ -1,6 +1,10 @@
 [package]
-name = "Asag"
+name = "asag"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+
+[package.metadata.bundle]
+identidier = "dev.rotten0x.asag"
