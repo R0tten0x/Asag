@@ -32,21 +32,23 @@ pub fn is_ethernet_connected() -> bool {
     for device in ethernet_device {
         if let Ok(if_output) = Command::new("ifconfig").arg(&device).output() {
             let if_stdout = str::from_utf8(&if_output.stdout).unwrap_or("");
+
             if if_stdout.contains("status: active") {
-                let output = Command::new("networksetup")
+                Command::new("networksetup")
                     .args(["-setairportpower", "en0", "off"])
                     .output()
                     .expect("Failed to disable Wi-Fi");
+
                 return true;
-            } else if if_stdout.contains("status: inactive") {
-                let output = Command::new("networksetup")
-                    .args(["-setairportpower", "en0", "on"])
-                    .output()
-                    .expect("Failed to disable Wi-Fi");
-                return false;
             }
         }
     }
+
+    Command::new("networksetup")
+        .args(["-setairportpower", "en0", "on"])
+        .output()
+        .expect("Failed to enable Wi-Fi");
+
     false
 }
 
