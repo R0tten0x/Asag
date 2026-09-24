@@ -8,6 +8,7 @@ macOS `launchd` background service that automatically manages Wi-Fi based on an 
 - Disables Wi-Fi when Ethernet is connected.
 - Re-enables Wi-Fi when Ethernet is disconnected.
 - Sends a macOS notification when the connection state changes.
+- Only works when laptop is open. Clamshell mode is not supported. (Manually re-enabling wifi needed)
 
 ## Why
 
